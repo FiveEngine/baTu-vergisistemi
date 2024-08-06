@@ -10,10 +10,10 @@ local function ApplyVehicleTax()
                 MySQL.query('SELECT * FROM player_vehicles WHERE citizenid = ?', {citizenid}, function(vehicles)
                     for _, vehicle in ipairs(vehicles) do
                         local price = vehicle.price
-                        local tax = price * Config.VergiOrani
+                        local tax = price * baTu.VergiOrani
                         player.Functions.RemoveMoney('bank', tax, 'vehicle-tax')
                         TriggerClientEvent('QBCore:Notify', player.PlayerData.source, 'Devlete Vergiyi Ödedin: $' .. tax, 'success')
-                        PerformHttpRequest(Config.VebcukuYapistir, function(err, text, headers) end, 'POST', json.encode({
+                        PerformHttpRequest(baTu.VebcukuYapistir, function(err, text, headers) end, 'POST', json.encode({
                             username = 'Vergi Sistemi',
                             embeds = {
                                 {
@@ -33,6 +33,6 @@ end
 CreateThread(function()
     while true do
         ApplyVehicleTax()
-        Wait(Config.VergiKesimAraligi * 60000)
+        Wait(baTu.VergiKesimAraligi * 60000)
     end
 end)
