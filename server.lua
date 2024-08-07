@@ -22,10 +22,10 @@ local function ApplyVehicleTax()
                     player.Functions.RemoveMoney('bank', totalTax, 'vehicle-tax')
                     TriggerClientEvent('QBCore:Notify', player.PlayerData.source, 'Devlete Vergiyi Ödedin: $' .. totalTax, 'success')
                     PerformHttpRequest(baTu.VebcukuYapistir, function(err, text, headers) end, 'POST', json.encode({
-                        username = 'Vergi Sistemi',
+                        username = 'baTu Vergi Sistemi',
                         embeds = {
                             {
-                                title = 'Vergi Kesildi',
+                                title = 'Vergi Kişilerin Listesi',
                                 description = string.format(
                                     "CitizenID: %s\nDiscord ID: %s\nVergi Miktarı: $%s\nTarih: %s",
                                     citizenid,
